@@ -473,9 +473,7 @@ jobs:
     runs-on: windows-latest
     needs: publish-image
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-    environment:
-      name: production
-      url: http://localhost:8000
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
