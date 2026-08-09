@@ -1,17 +1,19 @@
 # app/agents/learner.py
 import numpy as np
 import joblib
+
+# pyrefly: ignore [missing-import]
 from sqlalchemy.orm import Session
 from app.db.learning_db import LearningFeedback
 
-# Train learner only after enough high-quality samples
+
 OVERRIDE_THRESHOLD = 300
 MODEL_PATH = "app/ai/learner_correction.pkl"
 
-# ---------------- SAFETY LIMITS ----------------
 
-MIN_DELTA = 0.5    # Ignore very tiny changes (noise)
-MAX_DELTA = 4.0    # Ignore extreme corrections (outliers)
+
+MIN_DELTA = 0.5    
+MAX_DELTA = 4.0   
 
 
 def process_override(
@@ -30,7 +32,7 @@ def process_override(
 
     delta = doctor_score - ai_score
 
-    # ---------------- SAFETY FILTERS ----------------
+    
 
     # Ignore tiny adjustments - noise
     if abs(delta) < MIN_DELTA:
