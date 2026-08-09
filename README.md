@@ -1,69 +1,116 @@
 <div align="center">
 
+# 🎮 HackMatrix 2026 - Round 2 | Official Submission
+
 # 🚑 ORION-Health: AI-Assisted Emergency Triage System
 
 ### *Next-Generation Autonomous Multi-Agent Clinical Decision Support & Urgency Scoring Platform*
 
+[![HackMatrix 2026](https://img.shields.io/badge/Event-HackMatrix_2026__Round_2-00E676?style=for-the-badge&logo=hackaday&logoColor=black)]()
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AARAV-git/orion-backend)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Python](https://img.shields.io/badge/Python_3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![React](https://img.shields.io/badge/React_18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![LightGBM](https://img.shields.io/badge/LightGBM-GREEN?style=for-the-badge)](https://lightgbm.readthedocs.io/)
 [![Ollama](https://img.shields.io/badge/Ollama_Llama_3-000000?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
-[![WebSockets](https://img.shields.io/badge/WebSockets-Realtime-FF6F00?style=for-the-badge&logo=socketdotio&logoColor=white)]()
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
-
----
-
-<p align="center">
-  <b>ORION-Health</b> bridges the gap between emergency medical intake and rapid care prioritization. Powered by a <b>modular multi-agent AI engine</b>, it processes patient vitals and symptoms, calculates objective numerical urgency scores using <b>LightGBM machine learning</b>, generates structured clinical justifications via <b>Ollama + Llama 3 local LLM reasoning</b>, and keeps healthcare professionals strictly in control through <b>human-in-the-loop zero-latency override channels</b>.
-</p>
-
-[Key Features](#-key-features--capabilities) •
-[System Architecture](#-system-architecture) •
-[Multi-Agent Pipeline](#-multi-agent-ai-pipeline) •
-[Sequence Flow](#-end-to-end-sequence-flow) •
-[Tech Stack](#-technology-stack) •
-[API Specs](#-rest-api--websocket-specifications) •
-[Quickstart](#-quickstart--installation-guide)
 
 ---
 </div>
 
-## 🚨 Problem Statement & Clinical Solution
-
-### ⚡ The Emergency Triage Crisis
-Emergency Departments (EDs) are fast-paced, high-stress clinical environments. Medical staff face immense pressure when conducting manual patient triage:
-- **Cognitive Overload & Decision Fatigue**: Surging patient volumes cause delays, inconsistent scoring, or risk of mis-triage.
-- **Static EHR & Lack of Decision Support**: Legacy healthcare systems record data post-facto but offer zero predictive urgency intelligence.
-- **Lack of Transparency & Automation**: Critical resuscitation cases are not automatically fast-tracked with instant multi-channel notifications.
-
-### 🛡️ The ORION-Health Solution
-ORION-Health serves as an **AI Clinical Assistant**, elevating nurse and physician decision-making while safeguarding clinical authority:
-- 📊 **Precision Risk Scoring**: Multi-parameter LightGBM ML model evaluates heart rate, blood pressure, $\text{SpO}_2$, temperature, respiratory rate, and pain score.
-- 🧠 **Explainable AI (XAI)**: Synthesizes transparent clinical rationale using Ollama + Llama 3 local LLM reasoning to justify every triage tier.
-- 👨‍⚕️ **Human-in-the-Loop (HITL)**: Clinicians review recommendations with 1-click overrides, feeding corrective data back into the Learner Agent.
-- 🚨 **Instant Emergency Fast-Track**: Automatically triggers background email/SMS/WhatsApp escalation alerts for critical patients ($\text{Score} \ge 7.5$).
-- ⚡ **Real-Time WebSocket Sync**: Multi-screen live queue updates keep doctor dashboards, emergency panels, and admin monitors perfectly synchronized.
+> [!IMPORTANT]
+> ### 🏆 HACKMATRIX 2026 - PROJECT DOCUMENTATION
+> 
+> | Attribute | Details |
+> | :--- | :--- |
+> | **Event Name** | 🎮 **HackMatrix 2026 – Round 2** |
+> | **Project Name / Title** | 🚑 **ORION-Health: AI-Assisted Emergency Triage System** |
+> | **Team Name** | ⚡ **[Insert Your Team Name]** |
+> | **Team Leader Name** | 👤 **[Insert Team Leader Name]** |
+> | **Team Leader Contact** | 📧 `[Insert Email / Phone / Contact]` |
+> | **GitHub Repository Link** | 🔗 [https://github.com/AARAV-git/orion-backend](https://github.com/AARAV-git/orion-backend) *(Public)* |
+> | **Live Deployed Link** | 🌐 `[Insert Live URL / Vercel / Cloud Run]` *(Optional)* |
+> | **Demo Video Link** | 📹 `[Insert YouTube / Loom / Drive Demo Video Link]` |
 
 ---
 
-## ✨ Key Features & Capabilities
+## 📌 Executive Summary
+**ORION-Health** is an intelligent, multi-agent AI emergency triage decision-support platform designed to reduce cognitive overload, prioritize critical care in emergency departments (EDs), and provide transparent, explainable urgency scoring. By combining **LightGBM machine learning** for 0–10 numerical risk scoring, **Ollama + Llama 3** for instant clinical rationale generation, and **zero-latency WebSockets**, ORION-Health provides real-time emergency prioritization while keeping clinicians in full control through **Human-in-the-Loop (HITL) override channels**.
 
-| Feature | Description | Technical Implementation |
+---
+
+## 🚨 Problem Being Solved
+Emergency Departments face a severe operational crisis:
+- ⏳ **High-Pressure Triage Overload**: Medical staff must rapidly evaluate incoming patients under extreme time pressure and cognitive fatigue, leading to triage delays or mis-prioritization.
+- 📉 **Static EHR & Passive Records**: Existing healthcare digital systems only act as data repositories post-facto; they lack proactive, real-time urgency analytics and decision support.
+- 🛑 **Lack of Transparency & Emergency Escalation**: Critical resuscitation cases are not automatically fast-tracked with instant multi-channel alert notifications across doctor panels.
+
+---
+
+## 💡 Unique Selling Point (USP)
+- 🧠 **Explainable Multi-Agent AI Core**: Unlike black-box ML models, ORION-Health breaks down decision-making across 5 dedicated micro-agents (`Observer` $\rightarrow$ `Planner` $\rightarrow$ `Explainer` $\rightarrow$ `Action` $\rightarrow$ `Learner`), providing clear clinical explanations for every score.
+- 👨‍⚕️ **Human-in-the-Loop (HITL) Continuous Learning**: Doctors retain 100% authority with 1-click priority overrides, feeding corrective data directly back into the Learner Agent to prevent AI hallucination risks.
+- ⚡ **Zero-Latency Multi-Screen Sync**: Bidirectional Starlette WebSockets keep patient intake, doctor queue dashboards, emergency fast-tracks, and analytics panels synchronized in real time.
+- 🚨 **Automated Emergency Fast-Track**: Critical patients ($\text{Score} \ge 7.5$) automatically trigger background SMTP email and Twilio WhatsApp/SMS alerts to attending physicians.
+
+---
+
+## ✨ Key Features
+
+1. **🏥 Smart Patient Intake & Pre-Registration Lookup**: Rapid vital signs & symptom entry with automated search pre-fill.
+2. **📊 LightGBM ML Urgency Scoring**: Computes objective 0–10 numerical risk scores based on vital sign matrix ($\text{SpO}_2$, HR, BP, Temp, Pain, RR).
+3. **💬 GenAI Medical Reasoning (Ollama + Llama 3)**: Generates 5 concise clinical bullet points justifying the assigned priority tier.
+4. **🔴 Emergency Resuscitation Fast-Track**: Visual pulsing red highlight and background notification dispatch for resuscitation cases.
+5. **⚕️ Doctor Queue & Override Dashboard**: Priority queue sorting with 1-click doctor priority overrides and clinical note logging.
+6. **📈 Learner Analytics & Audit Trail**: Full SQLAlchemy audit logging of every assessment, override, and system event.
+
+---
+
+## 🖼️ Platform Preview & Visual Workflow
+
+```
++---------------------------------------------------------------------------------------------------+
+|  🏥 PATIENT INTAKE FORM        -->   🧠 MULTI-AGENT AI ENGINE      -->   ⚕️ DOCTOR QUEUE DASHBOARD |
+|  Input: Vitals, Pain, Symptoms        Observer -> Planner -> Explainer     Urgency Sorted List    |
+|  Auto-fill via Pre-Registration       LightGBM ML + Ollama Llama 3          1-Click HITL Overrides |
++---------------------------------------------------------------------------------------------------+
+```
+
+```mermaid
+flowchart LR
+    Intake["🏥 Patient Intake"] --> ML["📊 LightGBM ML (0-10)"]
+    ML --> LLM["💬 Ollama Llama 3 (XAI)"]
+    LLM --> WS["⚡ WebSocket Broadcast"]
+    WS --> Doctor["⚕️ Doctor Queue Panel"]
+    WS --> Alert["🚨 Emergency Email/SMS Alert"]
+```
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer | Technology | Purpose |
 | :--- | :--- | :--- |
-| **🏥 Smart Patient Intake** | Fast, intuitive symptom and vital sign submission with auto-fill from pre-registration lookup. | React 18 / Next.js 16 + Pydantic v2 Schema Validation |
-| **🧠 Multi-Agent Core** | Orchestrates tasks across specialized micro-agents: Observer, Planner, Action, Learner, Explainer. | Python 3.10+ Async Agent Architecture |
-| **📊 LightGBM Risk Scoring** | Computes objective 0–10 numerical risk scores based on vital signs & clinical risk indicators. | Scikit-learn + LightGBM ML Pipeline with fallback rule engine |
-| **💬 GenAI Medical Reasoning** | Generates human-readable clinical justifications and differential diagnosis considerations. | Ollama + Meta Llama 3 local LLM engine |
-| **🔴 Emergency Fast-Track** | Highlights resuscitation cases in pulsing red and triggers background alerts. | BackgroundTasks + SMTP Email + Twilio WhatsApp/SMS |
-| **👨‍⚕️ Doctor Overrides** | Allows clinicians to adjust priority tiers, record clinical notes, and log reasons. | Learner Agent + DoctorActions DB Table |
-| **🔄 Live WebSocket Stream** | Pushes instantaneous queue state changes to all connected doctor & admin panels. | Centralized FastAPI WebSocket Connection Manager |
+| **Backend Framework** | **FastAPI** (Python 3.10+) | High-performance async REST API core & routing |
+| **Frontend UI** | **React 18**, **Next.js 16**, **Vite**, **Tailwind CSS**, **Framer Motion** | Responsive futuristic medical control center dashboards |
+| **Machine Learning Core** | **LightGBM**, **Scikit-learn**, **Pandas**, **NumPy** | Numerical risk prediction & feature matrix handling |
+| **GenAI LLM Suite** | **Ollama (Llama 3)**, **Google Gemini 1.5 Pro** | Explainable AI (XAI) clinical justification & offline reasoning |
+| **Real-Time Layer** | **WebSockets** (Native Starlette) | Zero-latency bidirectional dashboard synchronization |
+| **Automation & Alerts** | **FastAPI BackgroundTasks**, **SMTP Email**, **Twilio API** | Event-driven emergency notifications & escalation |
+| **Database & ORM** | **SQLite**, **SQLAlchemy** | Relational data persistence & async CRUD operations |
+| **CI/CD Pipeline** | **GitHub Actions** (7-stage pipeline on `windows-latest`) | Continuous integration, testing & build automation |
 
 ---
 
-## 🏗️ System Architecture
+## 🔮 Future Scope
+- 📱 **Mobile App Integration**: Native Android/iOS paramedic triage intake app with offline sync.
+- 🏥 **EHR / HL7 FHIR Interoperability**: Direct API connector for Epic & Cerner hospital systems.
+- 📷 **Computer Vision Vital Check**: Facial thermal and pulse rate estimation via camera intake.
+
+---
+
+## 🏗️ Detailed System Architecture
 
 ORION-Health implements a 6-layer micro-modular architecture designed for sub-second response times, data consistency, and fail-safe clinical deployment.
 
@@ -276,23 +323,6 @@ sequenceDiagram
     FastAPI->>WS: Broadcast OVERRIDE_UPDATED Event
     WS-->>React: Real-time Sync Across All Doctor Screens
 ```
-
----
-
-## 🛠️ Technology Stack
-
-| Layer | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Backend Framework** | **FastAPI** (Python 3.10+) | High-performance async REST API core & routing |
-| **ASGI Server** | **Uvicorn** | Asynchronous server implementation |
-| **ML Risk Engine** | **LightGBM**, **Scikit-learn**, **NumPy**, **Pandas** | Numerical risk prediction & feature matrix handling |
-| **GenAI LLM Suite** | **Ollama (Llama 3)**, **Google Gemini 1.5 Pro** | Explainable AI (XAI) clinical justification & offline reasoning |
-| **Agent Framework** | **LangChain**, **LlamaIndex** | Multi-agent state orchestration & memory |
-| **Database & ORM** | **SQLite**, **SQLAlchemy** | Relational data persistence & async CRUD operations |
-| **Real-Time Layer** | **WebSockets** (Native Starlette) | Zero-latency bidirectional dashboard synchronization |
-| **Automation & Alerts** | **FastAPI BackgroundTasks**, **SMTP Email**, **Twilio API** | Event-driven emergency notifications & escalation |
-| **Validation & Security** | **Pydantic v2**, **python-dotenv**, **CORS Middleware** | Type safety, input sanitization, and environment management |
-| **Frontend UI** | **React 18**, **Next.js 16**, **Vite**, **Tailwind CSS**, **Framer Motion** | Responsive futuristic medical control center dashboards |
 
 ---
 
@@ -562,12 +592,6 @@ npm run dev
 
 ---
 
-## 🏆 Presentation Pitch & Key Talking Points for Judges
-
-> *"ORION-Health is built using a modular multi-agent backend that cleanly decouples signal extraction, machine learning risk scoring, GenAI explainability, and background workflow automation. By enforcing strict human-in-the-loop oversight through real-time WebSockets and zero-latency doctor override channels, we combine the speed of AI decision support with absolute clinical safety."*
-
----
-
 <div align="center">
-  <b>Built with ❤️ for Emergency Healthcare Decision Support</b>
+  <b>Built with ❤️ for Emergency Healthcare Decision Support | HackMatrix 2026</b>
 </div>
