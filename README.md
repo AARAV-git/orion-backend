@@ -15,7 +15,14 @@
 [![Ollama](https://img.shields.io/badge/Ollama_Llama_3-000000?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
-[![View Full Documentation](https://img.shields.io/badge/📖_View_Full_Documentation-docs%2FDOCUMENTATION.md-7c4dff?style=for-the-badge&logo=readme&logoColor=white)](docs/DOCUMENTATION.md)
+
+<br/>
+
+<a href="docs/DOCUMENTATION.md">
+  <img src="https://img.shields.io/badge/📖_EXPLORE_FULL_PROJECT_DOCUMENTATION_PAGE-7C4DFF?style=for-the-badge&logo=gitbook&logoColor=white" alt="View Full Documentation" height="42" />
+</a>
+
+<br/>
 
 ---
 </div>
@@ -31,7 +38,7 @@
 > | **Team Leader Name** | 👤 **Sunny Pathak** (📞 `9321740409`) |
 > | **Team Member** | 👥 **Saurav** |
 > | **GitHub Repository Link** | 🔗 [https://github.com/AARAV-git/orion-backend](https://github.com/AARAV-git/orion-backend) *(Public)* |
-> | **Full Documentation** | 📖 [docs/DOCUMENTATION.md](docs/DOCUMENTATION.md) |
+> | **Full Documentation Page** | 📖 [**Click Here to Open docs/DOCUMENTATION.md**](docs/DOCUMENTATION.md) |
 > | **Live Deployed Link** | 🌐 `[Insert Live URL / Vercel / Cloud Run]` *(Optional)* |
 > | **Demo Video Link** | 📹 `[Insert YouTube / Loom / Drive Demo Video Link]` |
 
