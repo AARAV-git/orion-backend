@@ -3,8 +3,8 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-db_path = os.environ.get("DB_PATH", "./orion.db")
-DATABASE_URL = f"sqlite:///{db_path}"
+db_dir = os.environ.get("DB_DIR", ".")
+DATABASE_URL = f"sqlite:///{db_dir}/orion.db"
 
 engine = create_engine(
     DATABASE_URL,

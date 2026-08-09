@@ -1,8 +1,10 @@
+import os
 from sqlalchemy import create_engine, Column, Integer, String, DateTime
 from sqlalchemy.orm import sessionmaker, declarative_base
 from datetime import datetime
 
-DATABASE_URL = "sqlite:///./pre_registration.db"
+db_dir = os.environ.get("DB_DIR", ".")
+DATABASE_URL = f"sqlite:///{db_dir}/pre_registration.db"
 
 engine = create_engine(
     DATABASE_URL, connect_args={"check_same_thread": False}
