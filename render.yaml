@@ -18,7 +18,11 @@ services:
       - key: OLLAMA_HOST
         value: "http://localhost:11434"
       - key: DB_PATH
-        value: "./orion.db"
+        value: "/data/orion.db"
+    disk:
+      name: orion-db
+      mountPath: /data
+      sizeGB: 1
     healthCheckPath: /
 
   # ----------------------------------------------------
