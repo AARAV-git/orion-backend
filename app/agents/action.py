@@ -7,7 +7,7 @@ def execute_actions(patient_data, triage_result):
     label = triage_result["urgency_level"]
     summary = triage_result["clinical_summary"]
 
-    # ---------------- DOCTOR ALERT (OPTIONAL) ----------------
+    
     doctor_email = patient_data.get("doctor_email")
 
     if doctor_email and score >= 9:
@@ -19,7 +19,7 @@ def execute_actions(patient_data, triage_result):
             doctor_email
         )
 
-    # ---------------- PATIENT EMAIL (OPTIONAL) ----------------
+    
     patient_email = patient_data.get("email")
 
     if patient_email:

@@ -1,4 +1,4 @@
-# app/ai/model.py
+
 
 import os
 
@@ -32,7 +32,7 @@ class UrgencyScoringModel:
             except Exception as e:
                 print(f"[UrgencyScoringModel] Model prediction failed ({e}), using clinical fallback.")
 
-        # Fallback Clinical Triage Rule Scoring Engine
+        
         score = float(features.get("pain_score", 5)) * 0.4
 
         spo2 = features.get("spo2", 98)
