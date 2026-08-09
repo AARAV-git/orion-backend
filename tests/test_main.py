@@ -34,8 +34,8 @@ def test_cors_middleware_present():
 def test_routes_registered():
     """Test that expected API routes are registered."""
     from app.main import app
-    routes = [route.path for route in app.routes]
+    routes = [getattr(route, "path", None) for route in app.routes if hasattr(route, "path")]
     assert "/" in routes
     # At least one /api route should be present
-    api_routes = [r for r in routes if r.startswith("/api")]
+    api_routes = [r for r in routes if r and r.startswith("/api")]
     assert len(api_routes) > 0

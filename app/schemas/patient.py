@@ -4,7 +4,7 @@ from pydantic import BaseModel, Field
 
 
 class PatientSchema(BaseModel):
-    name: str = Field(..., example="Rahul Sharma")
+    name: str = Field(..., json_schema_extra={"example": "Rahul Sharma"})
     pain_score: int
     duration_hours: int
     age: Optional[int] = None
