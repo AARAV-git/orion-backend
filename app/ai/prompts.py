@@ -1,4 +1,4 @@
-
+# app/ai/prompts.py
 
 
 def triage_prompt(patient_data: dict, urgency: float) -> str:

@@ -1,10 +1,9 @@
 # app/db/crud.py
-# pyrefly: ignore [missing-import]
 from sqlalchemy.orm import Session
 from app.db import models
 
 
-
+# ------------------ PATIENT ------------------
 
 def create_patient(db: Session, data: dict):
     patient = models.Patient(**data)

@@ -9,7 +9,7 @@ EMAIL_SENDER = "sunnypathak979@gmail.com"
 EMAIL_PASSWORD = "awre kxgo bnfr xtjr"   # Use App Password
 
 
-
+# ---------------- DOCTOR EMERGENCY ALERT ----------------
 
 def send_emergency_alert(patient, score, label, summary, receiver_email):
 
@@ -48,7 +48,7 @@ Immediate medical attention is required.
         print("❌ Emergency email failed:", e)
 
 
-
+# ---------------- PATIENT NOTIFICATION ----------------
 
 def send_patient_notification(patient, score, label, summary, receiver_email):
 
@@ -98,4 +98,4 @@ ORION-Health Team
         print("📧 Patient email notification sent successfully.")
 
     except Exception as e:
-        print("❌ Patient email has been failed:", e)
+        print("❌ Patient email failed:", e)
