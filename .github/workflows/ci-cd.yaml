@@ -11,6 +11,8 @@ env:
   PYTHON_VERSION: "3.10"
   IMAGE_NAME: orion-health-backend
   REGISTRY: ghcr.io
+  PYTHONUTF8: "1"
+  PYTHONIOENCODING: "utf-8"
 
 jobs:
   # ─────────────────────────────────────────────────────────
