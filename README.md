@@ -62,6 +62,123 @@ orion-backend/
 
 ---
 
+## 🧠 System Architectural Diagram
+
+```mermaid
+flowchart TB
+    subgraph FRONTEND ["💻 FRONTEND PRESENTATION LAYER (React 18 + Vite)"]
+        direction TB
+        subgraph UI_PAGES ["Pages & Dashboards"]
+            PatientPage["🏥 Patient Intake Form<br/>(PatientRegister.jsx)"]
+            PreRegPage["📋 Pre-Registration<br/>(PreRegister.jsx)"]
+            DocPage["⚕️ Doctor Dashboard Queue<br/>(DoctorPanel.jsx)"]
+            EmergPage["🔴 Emergency Panel<br/>(EmergencyPanel.jsx)"]
+            HistPage["📈 Doctor History & Analytics<br/>(DoctorHistory.jsx)"]
+        end
+        subgraph UI_CLIENTS ["State & Communication"]
+            Context["Global Context State<br/>(context.js)"]
+            AxiosClient["Axios REST API Client<br/>(api.js)"]
+            WSHook["WebSocket Listener Hook<br/>(hooks.js)"]
+        end
+        UI_PAGES --> Context
+        Context --> AxiosClient
+        Context <--> WSHook
+    end
+
+    subgraph GATEWAY ["🌐 API GATEWAY & ROUTING LAYER (FastAPI + Uvicorn)"]
+        direction TB
+        CORSMiddleware["CORS Security & Auth Middleware"]
+        PydanticVal["Pydantic Data Validation Schemas"]
+        subgraph ROUTERS ["API Route Controllers"]
+            R_Patient["/api/patient/submit"]
+            R_Triage["/api/triage/assess"]
+            R_Doctor["/api/doctor/patients & /override"]
+            R_Admin["/api/admin/logs"]
+            R_PreReg["/api/preregister"]
+        end
+        WSManager["Central WebSocket Manager<br/>(/ws)"]
+        
+        CORSMiddleware --> PydanticVal
+        PydanticVal --> ROUTERS
+    end
+
+    subgraph MULTI_AGENT ["🧠 MULTI-AGENT AI ORCHESTRATION ENGINE"]
+        direction TB
+        Observer["1️⃣ OBSERVER AGENT<br/>Signal Extraction & Vital Signs Normalization"]
+        Planner["2️⃣ PLANNER AGENT<br/>ML Urgency Scoring + LLM Explainability Orchestration"]
+        Action["3️⃣ ACTION AGENT<br/>Workflow Triggers, Alert Generation & Live Broadcasting"]
+        Learner["4️⃣ LEARNER AGENT<br/>Doctor Override Tracking & Feedback Analytics"]
+        Explainer["5️⃣ EXPLAINER AGENT<br/>Clinical Justification Synthesizer"]
+
+        Observer --> Planner
+        Planner --> Explainer
+        Explainer --> Action
+    end
+
+    subgraph AI_ML ["🤖 AI, MACHINE LEARNING & REASONING CORE"]
+        direction TB
+        FeatureEng["Feature Engineering & Risk Matrix<br/>(features.py)"]
+        MLModel["LightGBM / Scikit-Learn Model<br/>(Urgency Risk Score 0-100)"]
+        subgraph LLM_SUITE ["GenAI Language Models (llm.py)"]
+            GPT4["OpenAI GPT-4o / GPT-4<br/>(Primary Medical Reasoner)"]
+            Gemini["Google Gemini 1.5 Pro<br/>(Secondary Backup LLM)"]
+            Ollama["Ollama / Llama 3<br/>(Offline Fallback Engine)"]
+        end
+
+        FeatureEng --> MLModel
+        MLModel --> LLM_SUITE
+    end
+
+    subgraph AUTOMATION ["⚡ AUTOMATION & NOTIFICATION ENGINE"]
+        direction TB
+        BgTasks["FastAPI BackgroundTasks & AsyncIO Engine"]
+        WorkflowRules["Priority Rule Engine<br/>(Critical / Urgent / Non-Urgent)"]
+        subgraph ALERTS ["Notification Services (alerts.py)"]
+            EmailAlert["SMTP Email API<br/>(Emergency Care Alerts)"]
+            TwilioAlert["Twilio API<br/>(WhatsApp & SMS Alerts)"]
+        end
+        BgTasks --> WorkflowRules
+        WorkflowRules --> ALERTS
+    end
+
+    subgraph PERSISTENCE ["🗄️ DATA STORAGE & AUDIT LOGGING LAYER"]
+        direction TB
+        ORM["SQLAlchemy ORM Layer"]
+        subgraph DB_TABLES ["SQLite Relational Database (orion.db)"]
+            T_Patients["Patients Table"]
+            T_Triage["Triage Results Table"]
+            T_Doctor["Doctor Actions Table"]
+            T_Audit["Audit Logs Table"]
+            T_PreReg["Pre-Registration Table"]
+        end
+        subgraph EXT_LOGS ["External & Audit Storage"]
+            GSheets["Google Sheets API Sync"]
+            LoguruFiles["Structured JSON & CSV Logs"]
+        end
+        ORM --> DB_TABLES
+        DB_TABLES --> EXT_LOGS
+    end
+
+    %% Inter-layer connections
+    AxiosClient -->|HTTP REST Requests| CORSMiddleware
+    WSManager <-->|Real-Time WS Messages| WSHook
+
+    R_Patient --> Observer
+    R_Triage --> Observer
+    R_Doctor -->|Override Feedback| Learner
+
+    Observer --> FeatureEng
+    Planner --> MLModel
+    Explainer --> LLM_SUITE
+
+    Action --> BgTasks
+    Action --> WSManager
+    Action --> ORM
+    Learner --> ORM
+```
+
+---
+
 ## 🧠 Data & Execution Pipeline
 
 ```
