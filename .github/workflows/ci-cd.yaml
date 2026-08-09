@@ -119,12 +119,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Docker Environment
-        uses: docker/setup-buildx-action@v3
-
       - name: Build Docker Container Image
         run: |
           docker build -t orion-backend:latest .
+
 
   publish-image:
     name: Publish Image
