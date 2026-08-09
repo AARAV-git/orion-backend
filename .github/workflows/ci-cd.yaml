@@ -13,6 +13,7 @@ env:
   REGISTRY: ghcr.io
   PYTHONUTF8: "1"
   PYTHONIOENCODING: "utf-8"
+  PYTHONPATH: "."
 
 jobs:
   # ─────────────────────────────────────────────────────────
@@ -121,7 +122,7 @@ jobs:
       - name: Run Pytest Unit Tests
         run: |
           if [ -d "tests" ]; then
-            pytest tests/ -v --tb=short --cov=app --cov-report=term-missing --cov-report=xml:coverage.xml
+            python -m pytest tests/ -v --tb=short --cov=app --cov-report=term-missing --cov-report=xml:coverage.xml
           else
             echo "No tests/ directory yet — creating placeholder test."
             mkdir -p tests
@@ -130,7 +131,7 @@ jobs:
               """Placeholder: project compiles and imports without errors."""
               assert True
           EOF
-            pytest tests/ -v
+            python -m pytest tests/ -v
           fi
 
       - name: Upload Coverage Report
