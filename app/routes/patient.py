@@ -1,18 +1,17 @@
-#app/routes/patient.py
+# app/routes/patient.py
 
 from fastapi import APIRouter, Depends
-from numpy import record
-from numpy import record
 from sqlalchemy.orm import Session
 
-from app.schemas.patient import PatientSchema
 from app.ai_pipeline import run_triage_pipeline
+from app.db.crud import create_audit_log, create_patient, create_triage_result
 from app.db.database import get_db
-from app.db.crud import create_patient, create_triage_result, create_audit_log
-from app.websocket import manager
-from app.storage import add_patient
-from app.db.prereg_db import PreRegistration, get_prereg_db
 from app.db.models import Patient, TriageResult
+from app.db.prereg_db import PreRegistration, get_prereg_db
+from app.schemas.patient import PatientSchema
+from app.storage import add_patient
+from app.websocket import manager
+
 router = APIRouter()
 
 
@@ -24,8 +23,6 @@ async def submit_patient(
     db: Session = Depends(get_db),
     pdb: Session = Depends(get_prereg_db)
 ):
-
-
     """
     Patient submits clinical data.
     Triggers AI triage pipeline, stores results,
@@ -34,8 +31,8 @@ async def submit_patient(
 
     # Convert Pydantic model to dict
     data = patient_data.dict()
-    # 🔍 AUTO-FILL FROM PRE-REGISTRATION DB
-    # 🔍 AUTO-FETCH FROM PRE-REGISTRATION DB
+
+    # AUTO-FETCH FROM PRE-REGISTRATION DB
     record = (
         pdb.query(PreRegistration)
         .filter(PreRegistration.patient_name.ilike(data["name"]))
@@ -44,25 +41,18 @@ async def submit_patient(
     )
 
     if record:
-      print("🧠 Auto-filling patient data from pre-registration DB")
+        print("Auto-filling patient data from pre-registration DB")
+        data["age"] = record.age
 
-    # Always fill age from pre-registration
-      data["age"] = record.age
+        if not data.get("verbal_problem"):
+            data["verbal_problem"] = record.problem
 
-    # Only auto-fill problem IF hospital did NOT provide one
-      if not data.get("verbal_problem"):
-         data["verbal_problem"] = record.problem
-
-    # Only auto-fill email IF hospital did NOT provide one
-      if not data.get("doctor_email"):
-         data["doctor_email"] = record.email
-
-
+        if not data.get("doctor_email"):
+            data["doctor_email"] = record.email
 
     # Remove operational-only field (not stored in DB)
     doctor_email = data.pop("doctor_email", None)
     emergency = data.pop("emergency", False)
-
 
     # Input for AI pipeline (includes email for emergency alerts)
     ai_input = {
@@ -71,29 +61,29 @@ async def submit_patient(
         "emergency": emergency
     }
 
-    # 1️⃣ Run AI Pipeline (Observer → Planner → Explainer → Action)
+    # 1. Run AI Pipeline (Observer -> Planner -> Explainer -> Action)
     result = run_triage_pipeline(ai_input)
 
-    # 2️⃣ Store Patient Medical Data
+    # 2. Store Patient Medical Data
     patient = create_patient(db, data)
 
-    # 3️⃣ Store AI Triage Result
+    # 3. Store AI Triage Result
     create_triage_result(db, patient.id, result)
 
-    # 4️⃣ Store Audit Log
+    # 4. Store Audit Log
     create_audit_log(
         db,
         event_type="PATIENT_SUBMIT",
         description=f"Patient {patient.id} submitted data"
     )
 
-    # 5️⃣ Push to Live Doctor Queue (in-memory priority list)
+    # 5. Push to Live Doctor Queue (in-memory priority list)
     add_patient({
         "patient": ai_input,
         **result
     })
 
-    # 6️⃣ WebSocket Live Update to Doctor Dashboard
+    # 6. WebSocket Live Update to Doctor Dashboard
     await manager.broadcast({
         "patient": ai_input,
         **result
@@ -103,6 +93,8 @@ async def submit_patient(
         "status": "success",
         "triage_result": result
     }
+
+
 @router.get("/patient/history/{name}")
 def patient_history(name: str, db: Session = Depends(get_db)):
     """

@@ -1,5 +1,6 @@
-#app/agents/explainer.py
+# app/agents/explainer.py
 from app.ai.ollama import generate_reasoning
+
 
 def explain_triage(patient_data, patient_name, summary, score, label):
     """

@@ -1,19 +1,16 @@
-
-
 BATCH_SIZE = 10
 
 patients_buffer = []
-emergency_buffer = []   # 🔴 Emergency queue
+emergency_buffer = []
 
 
 def add_patient(record):
     if record.get("patient", {}).get("emergency"):
-        print("🚨 EMERGENCY PATIENT ADDED")
+        print("EMERGENCY PATIENT ADDED")
         emergency_buffer.append(record)
     else:
-        print("🟢 NORMAL PATIENT ADDED")
+        print("NORMAL PATIENT ADDED")
         patients_buffer.append(record)
-
 
 
 # ---------------- NORMAL QUEUE ----------------
@@ -78,11 +75,3 @@ def get_emergency_batch(batch_number: int = 1):
         return []
 
     return batches[batch_number - 1]
-
-# def add_patient(record):
-#     if record.get("patient", {}).get("emergency"):
-#         print("🚨 EMERGENCY PATIENT ADDED")
-#         emergency_buffer.append(record)
-#     else:
-#         print("🟢 NORMAL PATIENT ADDED")
-#         patients_buffer.append(record)

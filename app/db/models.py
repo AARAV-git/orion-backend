@@ -1,9 +1,10 @@
 # app/db/models.py
-from sqlalchemy import Column, Integer, String, Float, Text, DateTime, ForeignKey
-from sqlalchemy.orm import relationship
 from datetime import datetime
-from app.db.database import Base
 
+from sqlalchemy import Column, DateTime, Float, ForeignKey, Integer, String, Text
+from sqlalchemy.orm import relationship
+
+from app.db.database import Base
 
 
 # -------------------------
@@ -49,7 +50,7 @@ class TriageResult(Base):
     urgency_score = Column(Float)
     urgency_level = Column(String)
 
-    clinical_summary = Column(String)     # ✅ ADD THIS
+    clinical_summary = Column(String)
     explanation = Column(String)
 
     created_at = Column(DateTime, default=datetime.utcnow)
@@ -61,7 +62,6 @@ class TriageResult(Base):
         back_populates="triage_result",
         cascade="all, delete"
     )
-
 
 
 # -------------------------
@@ -81,7 +81,6 @@ class DoctorAction(Base):
 
     # Relationships
     triage_result = relationship("TriageResult", back_populates="doctor_actions")
-
 
 
 class AuditLog(Base):

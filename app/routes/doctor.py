@@ -1,18 +1,16 @@
 # app/routes/doctor.py
-from fastapi import APIRouter, Query, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 
-from app.storage import get_batch
+from app.agents.learner import process_override
+from app.db import models
+from app.db.crud import create_audit_log, create_doctor_action
 from app.db.database import get_db
 from app.db.learning_db import get_learning_db
-from app.db import crud, models
-from app.agents.learner import process_override
+from app.db.models import DoctorAction, Patient, TriageResult
+from app.storage import get_batch, get_emergency_batch
 from app.websocket import manager
-from app.db.crud import create_doctor_action
-from app.db.crud import create_audit_log
-from app.storage import get_emergency_batch
-from sqlalchemy import func
-from app.db.models import Patient, TriageResult, DoctorAction
+
 router = APIRouter()
 
 
@@ -31,8 +29,6 @@ def get_patients(batch: int = Query(1, ge=1)):
     }
 
 
-
-
 @router.get("/doctor/emergency")
 def get_emergency_patients(batch: int = Query(1, ge=1)):
     """
@@ -43,8 +39,9 @@ def get_emergency_patients(batch: int = Query(1, ge=1)):
         "patients": get_emergency_batch(batch)
     }
 
+
 # ---------------------------------------------------
-# 2. DOCTOR OVERRIDE → LEARNER AGENT PIPELINE
+# 2. DOCTOR OVERRIDE -> LEARNER AGENT PIPELINE
 # ---------------------------------------------------
 
 @router.post("/doctor/override")
@@ -104,6 +101,8 @@ async def override_ai_decision(
         "status": "success",
         "message": "Override recorded and learning updated"
     }
+
+
 @router.get("/doctor/history")
 def doctor_history(db: Session = Depends(get_db)):
     """

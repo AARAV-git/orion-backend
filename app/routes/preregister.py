@@ -46,6 +46,8 @@ def fetch_preregistered_patient(
         "problem": record.problem,
         "email": record.email
     }
+
+
 @router.get("/preregister/search/{query}")
 def search_preregistered_patients(query: str, db: Session = Depends(get_prereg_db)):
 

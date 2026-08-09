@@ -1,3 +1,4 @@
+# app/agents/learner.py
 import numpy as np
 import joblib
 from sqlalchemy.orm import Session
@@ -21,8 +22,8 @@ def process_override(
     confidence: float = 1.0
 ):
     """
-    Learner Agent – Safe Clinical Learning
-    
+    Learner Agent - Safe Clinical Learning
+
     Learns ONLY from validated doctor overrides.
     Implements strict filtering to prevent noisy learning.
     """
@@ -31,19 +32,19 @@ def process_override(
 
     # ---------------- SAFETY FILTERS ----------------
 
-    # Ignore tiny adjustments → noise
+    # Ignore tiny adjustments - noise
     if abs(delta) < MIN_DELTA:
-        print("🧠 Learner: Ignored tiny correction:", delta)
+        print("Learner: Ignored tiny correction:", delta)
         return
 
-    # Ignore extreme overrides → unstable
+    # Ignore extreme overrides - unstable
     if abs(delta) > MAX_DELTA:
-        print("🧠 Learner: Ignored extreme correction:", delta)
+        print("Learner: Ignored extreme correction:", delta)
         return
 
     # Ignore low-confidence doctor overrides (if provided)
     if confidence < 0.7:
-        print("🧠 Learner: Ignored low-confidence override")
+        print("Learner: Ignored low-confidence override")
         return
 
     # ---------------- STORE CLEAN SAMPLE ----------------
@@ -57,7 +58,7 @@ def process_override(
     db.add(record)
     db.commit()
 
-    print("🧠 Learner: Stored validated learning sample")
+    print("Learner: Stored validated learning sample")
 
     count = db.query(LearningFeedback).count()
 
@@ -71,7 +72,7 @@ def train_correction_model(db: Session):
     records = db.query(LearningFeedback).all()
 
     if len(records) < OVERRIDE_THRESHOLD:
-        print("🧠 Learner: Not enough data to train")
+        print("Learner: Not enough data to train")
         return
 
     X, y = [], []
@@ -96,7 +97,7 @@ def train_correction_model(db: Session):
 
     joblib.dump(model, MODEL_PATH)
 
-    print(f"🧠 Learner Agent: Correction model trained successfully with {len(records)} samples!")
+    print(f"Learner Agent: Correction model trained successfully with {len(records)} samples!")
 
 
 # ---------------- PREDICT SAFE ADJUSTMENT ----------------
@@ -110,10 +111,10 @@ def predict_adjustment(features: dict) -> float:
         X = np.array([list(features.values())])
         adjustment = float(model.predict(X)[0])
 
-        # Safety clamp → never allow large auto corrections
+        # Safety clamp - never allow large auto corrections
         adjustment = float(np.clip(adjustment, -2.0, 2.0))
 
         return adjustment
 
-    except Exception as e:
+    except Exception:
         return 0.0

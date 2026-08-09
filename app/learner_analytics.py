@@ -1,6 +1,7 @@
 import sqlite3
-import pandas as pd
+
 import matplotlib.pyplot as plt
+import pandas as pd
 
 DB_PATH = "../learner.db"
 
@@ -23,7 +24,7 @@ plt.show()
 
 plt.figure()
 plt.scatter(df["ai_score"], df["doctor_score"])
-plt.plot([1,10],[1,10])
+plt.plot([1, 10], [1, 10])
 plt.title("AI Score vs Doctor Score")
 plt.xlabel("AI Score")
 plt.ylabel("Doctor Score")

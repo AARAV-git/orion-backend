@@ -1,8 +1,9 @@
-import pandas as pd
 import pickle
-from sklearn.model_selection import train_test_split
+
+import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
 
 # 1. Load Data
 df = pd.read_csv(r'C:\Users\sunny\Desktop\CodeAThon\orion-backend\data\synthetic_medical_triage.csv')
@@ -21,11 +22,11 @@ df['urgency_score'] = df['triage_level'].map(label_mapping)
 # 3. Select Features (Only those we can easily extract from text input)
 # We exclude 'arrival_mode' and history counts to simplify the demo input
 features = [
-    'age', 
-    'heart_rate', 
-    'systolic_blood_pressure', 
-    'oxygen_saturation', 
-    'body_temperature', 
+    'age',
+    'heart_rate',
+    'systolic_blood_pressure',
+    'oxygen_saturation',
+    'body_temperature',
     'pain_level'
 ]
 
@@ -48,4 +49,4 @@ print("\nClassification Report:\n", classification_report(y_test, preds))
 with open("app/ai/triage_model.pkl", "wb") as f:
     pickle.dump(model, f)
 
-print("✅ Model saved to app/ai/triage_model.pkl")
+print("Model saved to app/ai/triage_model.pkl")

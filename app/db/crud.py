@@ -43,8 +43,6 @@ def create_doctor_action(db, triage_result_id, new_score, notes=None):
     return action
 
 
-
-
 # ------------------ AUDIT LOG ------------------
 
 def create_audit_log(db: Session, event_type: str, description: str):
@@ -55,6 +53,3 @@ def create_audit_log(db: Session, event_type: str, description: str):
     db.add(log)
     db.commit()
     return log
-
-
-
