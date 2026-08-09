@@ -15,6 +15,7 @@
 [![Ollama](https://img.shields.io/badge/Ollama_Llama_3-000000?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
+[![View Full Documentation](https://img.shields.io/badge/📖_View_Full_Documentation-docs%2FDOCUMENTATION.md-7c4dff?style=for-the-badge&logo=readme&logoColor=white)](docs/DOCUMENTATION.md)
 
 ---
 </div>
@@ -26,10 +27,11 @@
 > | :--- | :--- |
 > | **Event Name** | 🎮 **HackMatrix 2026 – Round 2** |
 > | **Project Name / Title** | 🚑 **ORION-Health: AI-Assisted Emergency Triage System** |
-> | **Team Name** | ⚡ **[Insert Your Team Name]** |
-> | **Team Leader Name** | 👤 **[Insert Team Leader Name]** |
-> | **Team Leader Contact** | 📧 `[Insert Email / Phone / Contact]` |
+> | **Team Name** | ⚡ **Neural Triage** |
+> | **Team Leader Name** | 👤 **Sunny Pathak** (📞 `9321740409`) |
+> | **Team Member** | 👥 **Saurav** |
 > | **GitHub Repository Link** | 🔗 [https://github.com/AARAV-git/orion-backend](https://github.com/AARAV-git/orion-backend) *(Public)* |
+> | **Full Documentation** | 📖 [docs/DOCUMENTATION.md](docs/DOCUMENTATION.md) |
 > | **Live Deployed Link** | 🌐 `[Insert Live URL / Vercel / Cloud Run]` *(Optional)* |
 > | **Demo Video Link** | 📹 `[Insert YouTube / Loom / Drive Demo Video Link]` |
 
