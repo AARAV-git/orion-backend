@@ -9,15 +9,15 @@
 [![React](https://img.shields.io/badge/React_18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
 [![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![LightGBM](https://img.shields.io/badge/LightGBM-GREEN?style=for-the-badge)](https://lightgbm.readthedocs.io/)
-[![OpenAI](https://img.shields.io/badge/OpenAI_GPT--4o-412991?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
+[![Ollama](https://img.shields.io/badge/Ollama_Llama_3-000000?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![WebSockets](https://img.shields.io/badge/WebSockets-Realtime-FF6F00?style=for-the-badge&logo=socketdotio&logoColor=white)]()
-[![License](https://img.shields.io/badge/License-MIT-blue.style=for-the-badge)]()
+[![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
 
 ---
 
 <p align="center">
-  <b>ORION-Health</b> bridges the gap between emergency medical intake and rapid care prioritization. Powered by a <b>modular multi-agent AI engine</b>, it processes patient vitals and symptoms, calculates objective numerical urgency scores using <b>LightGBM machine learning</b>, generates structured clinical justifications via <b>GPT-4o / Gemini GenAI</b>, and keeps healthcare professionals strictly in control through <b>human-in-the-loop zero-latency override channels</b>.
+  <b>ORION-Health</b> bridges the gap between emergency medical intake and rapid care prioritization. Powered by a <b>modular multi-agent AI engine</b>, it processes patient vitals and symptoms, calculates objective numerical urgency scores using <b>LightGBM machine learning</b>, generates structured clinical justifications via <b>Ollama + Llama 3 local LLM reasoning</b>, and keeps healthcare professionals strictly in control through <b>human-in-the-loop zero-latency override channels</b>.
 </p>
 
 [Key Features](#-key-features--capabilities) •
@@ -42,7 +42,7 @@ Emergency Departments (EDs) are fast-paced, high-stress clinical environments. M
 ### 🛡️ The ORION-Health Solution
 ORION-Health serves as an **AI Clinical Assistant**, elevating nurse and physician decision-making while safeguarding clinical authority:
 - 📊 **Precision Risk Scoring**: Multi-parameter LightGBM ML model evaluates heart rate, blood pressure, $\text{SpO}_2$, temperature, respiratory rate, and pain score.
-- 🧠 **Explainable AI (XAI)**: Synthesizes transparent clinical rationale using OpenAI GPT-4o / Gemini 1.5 Pro to justify every triage tier.
+- 🧠 **Explainable AI (XAI)**: Synthesizes transparent clinical rationale using Ollama + Llama 3 local LLM reasoning to justify every triage tier.
 - 👨‍⚕️ **Human-in-the-Loop (HITL)**: Clinicians review recommendations with 1-click overrides, feeding corrective data back into the Learner Agent.
 - 🚨 **Instant Emergency Fast-Track**: Automatically triggers background email/SMS/WhatsApp escalation alerts for critical patients ($\text{Score} \ge 7.5$).
 - ⚡ **Real-Time WebSocket Sync**: Multi-screen live queue updates keep doctor dashboards, emergency panels, and admin monitors perfectly synchronized.
@@ -56,7 +56,7 @@ ORION-Health serves as an **AI Clinical Assistant**, elevating nurse and physici
 | **🏥 Smart Patient Intake** | Fast, intuitive symptom and vital sign submission with auto-fill from pre-registration lookup. | React 18 / Next.js 16 + Pydantic v2 Schema Validation |
 | **🧠 Multi-Agent Core** | Orchestrates tasks across specialized micro-agents: Observer, Planner, Action, Learner, Explainer. | Python 3.10+ Async Agent Architecture |
 | **📊 LightGBM Risk Scoring** | Computes objective 0–10 numerical risk scores based on vital signs & clinical risk indicators. | Scikit-learn + LightGBM ML Pipeline with fallback rule engine |
-| **💬 GenAI Medical Reasoning** | Generates human-readable clinical justifications and differential diagnosis considerations. | OpenAI GPT-4o API / Gemini 1.5 Pro with Ollama offline fallback |
+| **💬 GenAI Medical Reasoning** | Generates human-readable clinical justifications and differential diagnosis considerations. | Ollama + Meta Llama 3 local LLM engine |
 | **🔴 Emergency Fast-Track** | Highlights resuscitation cases in pulsing red and triggers background alerts. | BackgroundTasks + SMTP Email + Twilio WhatsApp/SMS |
 | **👨‍⚕️ Doctor Overrides** | Allows clinicians to adjust priority tiers, record clinical notes, and log reasons. | Learner Agent + DoctorActions DB Table |
 | **🔄 Live WebSocket Stream** | Pushes instantaneous queue state changes to all connected doctor & admin panels. | Centralized FastAPI WebSocket Connection Manager |
@@ -106,7 +106,7 @@ flowchart TB
         direction TB
         Observer["1️⃣ OBSERVER AGENT<br/>Signal Extraction & Vital Signs Normalization"]
         Planner["2️⃣ PLANNER AGENT<br/>ML Urgency Scoring & Task Planning"]
-        Explainer["3️⃣ EXPLAINER AGENT<br/>Clinical Rationale Generation (GPT-4o)"]
+        Explainer["3️⃣ EXPLAINER AGENT<br/>Clinical Rationale Generation (Llama 3)"]
         Action["4️⃣ ACTION AGENT<br/>Workflow Triggers & Notification Dispatcher"]
         Learner["5️⃣ LEARNER AGENT<br/>Doctor Override Tracking & Feedback Analytics"]
 
@@ -119,10 +119,9 @@ flowchart TB
         direction TB
         FeatureEng["Feature Engineering Matrix<br/>(features.py)"]
         MLModel["LightGBM Urgency Scoring Model<br/>(model.py)"]
-        subgraph LLM_SUITE ["GenAI LLM Suite (llm.py)"]
-            GPT4["OpenAI GPT-4o<br/>(Primary Medical Reasoner)"]
-            Gemini["Google Gemini 1.5 Pro<br/>(Secondary Backup LLM)"]
-            Ollama["Ollama / Llama 3<br/>(Offline Fallback Engine)"]
+        subgraph LLM_SUITE ["Local & Fallback GenAI Engine (llm.py & ollama.py)"]
+            Ollama["Ollama + Meta Llama 3<br/>(Primary Offline Medical Reasoner)"]
+            Gemini["Google Gemini 1.5 Pro<br/>(Backup Cloud LLM)"]
         end
 
         FeatureEng --> MLModel
@@ -218,7 +217,7 @@ $$\text{REST Request} \longrightarrow \text{Observer Agent} \longrightarrow \tex
 +---------------------------------------------------------------------------------------------------+
 | 3. EXPLAINER AGENT (GenAI Clinical Justification)                                                 |
 |    - Input: Urgency score, vital anomalies, and patient verbal problem statement.                 |
-|    - LLM Engine: OpenAI GPT-4o / Gemini 1.5 Pro via structured prompt engineering.               |
+|    - LLM Engine: Ollama + Meta Llama 3 via structured prompt engineering.                          |
 |    - Output: Concise medical reasoning, risk breakdown, and suggested emergency interventions.    |
 +---------------------------------------------------------------------------------------------------+
                                                   |
@@ -262,7 +261,7 @@ sequenceDiagram
     Observer-->>Planner: Structured Feature Vector
     Planner->>Planner: Compute LightGBM Urgency Risk Score (0-10)
     Planner->>Explainer: Forward Score + Anomalies
-    Explainer->>Explainer: Query GPT-4o for Clinical Rationale
+    Explainer->>Explainer: Query Ollama (Llama 3) for Clinical Rationale
     Explainer-->>Action: Urgency Score + Tier + AI Explanation
     Action->>DB: Save Patient Record & Triage Result
     Action->>Action: Trigger Background Email / Twilio SMS (if Critical)
@@ -287,7 +286,7 @@ sequenceDiagram
 | **Backend Framework** | **FastAPI** (Python 3.10+) | High-performance async REST API core & routing |
 | **ASGI Server** | **Uvicorn** | Asynchronous server implementation |
 | **ML Risk Engine** | **LightGBM**, **Scikit-learn**, **NumPy**, **Pandas** | Numerical risk prediction & feature matrix handling |
-| **GenAI LLM Suite** | **OpenAI GPT-4o**, **Google Gemini 1.5 Pro**, **Ollama (Llama 3)** | Explainable AI (XAI) clinical justification |
+| **GenAI LLM Suite** | **Ollama (Llama 3)**, **Google Gemini 1.5 Pro** | Explainable AI (XAI) clinical justification & offline reasoning |
 | **Agent Framework** | **LangChain**, **LlamaIndex** | Multi-agent state orchestration & memory |
 | **Database & ORM** | **SQLite**, **SQLAlchemy** | Relational data persistence & async CRUD operations |
 | **Real-Time Layer** | **WebSockets** (Native Starlette) | Zero-latency bidirectional dashboard synchronization |
@@ -326,8 +325,8 @@ orion-backend/
 │   ├── ai/                    # 🔬 Machine Learning & LLM Core
 │   │   ├── model.py           # LightGBM urgency risk prediction model (with rule fallback)
 │   │   ├── features.py        # Feature engineering & matrix normalization
-│   │   ├── ollama.py          # Offline LLM fallback integration handler
-│   │   └── prompts.py         # Structured medical prompts for GPT-4o / Gemini
+│   │   ├── ollama.py          # Ollama (Llama 3) offline LLM integration handler
+│   │   └── prompts.py         # Structured medical prompts for Llama 3 / Gemini
 │   │
 │   ├── automation/            # ⚡ Automation & Notification Services
 │   │   ├── alerts.py          # SMTP Email & Twilio WhatsApp/SMS alert dispatchers
@@ -398,7 +397,7 @@ The SQLite database (`orion.db`) uses SQLAlchemy ORM with five core operational 
 | patient_id        | VARCHAR(50)  | Foreign Key -> Patients.patient_id            |
 | urgency_score     | FLOAT        | Machine Learning Calculated Risk Score (0-10)  |
 | priority_tier     | VARCHAR(50)  | Tier: Critical / High / Moderate / Mild / Low  |
-| ai_explanation    | TEXT         | GPT-4o / Gemini Clinical Rationale             |
+| ai_explanation    | TEXT         | Ollama (Llama 3) Clinical Rationale            |
 | confidence_score  | FLOAT        | Model Prediction Confidence (0.0 - 1.0)        |
 | estimated_wait_min| INTEGER      | Calculated Estimated Wait Time (minutes)       |
 | features_json     | TEXT         | Serialized Feature Vector                      |
