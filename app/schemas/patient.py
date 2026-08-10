@@ -13,5 +13,6 @@ class PatientSchema(BaseModel):
     chronic_disease: int
     red_flag: int
     verbal_problem: Optional[str] = None
+    email: Optional[str] = None
     doctor_email: Optional[str] = None
     emergency: Optional[bool] = False

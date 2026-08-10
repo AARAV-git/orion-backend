@@ -50,14 +50,16 @@ async def submit_patient(
         if not data.get("doctor_email"):
             data["doctor_email"] = record.email
 
-    # Remove operational-only field (not stored in DB)
+    # Remove operational-only fields (not stored in Patient DB table)
+    patient_email = data.pop("email", None)
     doctor_email = data.pop("doctor_email", None)
     emergency = data.pop("emergency", False)
 
-    # Input for AI pipeline (includes email for emergency alerts)
+    # Input for AI pipeline (includes emails for emergency & patient alerts)
     ai_input = {
         **data,
-        "doctor_email": doctor_email,
+        "email": patient_email or doctor_email,
+        "doctor_email": doctor_email or patient_email,
         "emergency": emergency
     }
 
