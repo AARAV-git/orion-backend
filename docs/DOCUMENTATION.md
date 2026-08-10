@@ -13,6 +13,7 @@
 [![Ollama](https://img.shields.io/badge/Ollama_Llama_3-000000?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
+[![Live Demo](https://img.shields.io/badge/Live_Demo-orion--frontend--ehdh.onrender.com-FF4081?style=for-the-badge&logo=render&logoColor=white)](https://orion-frontend-ehdh.onrender.com/)
 
 ---
 </div>
@@ -27,8 +28,9 @@
 | **Team Leader** | 👤 **Sunny Pathak** (📞 `9321740409`) |
 | **Team Member** | 👥 **Saurav** |
 | **GitHub Repository Link** | 🔗 [https://github.com/AARAV-git/orion-backend](https://github.com/AARAV-git/orion-backend) *(Public)* |
+| **Live Deployed App** | 🌐 [https://orion-frontend-ehdh.onrender.com/](https://orion-frontend-ehdh.onrender.com/) |
+| **Backend API URL** | ⚡ `https://orion-backend-a0qa.onrender.com/` |
 | **Slide Deck Presentation** | 📊 [View Presentation Slide Deck](#) |
-| **Deployment Note** | ℹ️ *Live demo runs locally on port 8000 (Backend) & port 3000 (Next.js Frontend).* |
 
 ---
 

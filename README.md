@@ -15,6 +15,7 @@
 [![Ollama](https://img.shields.io/badge/Ollama_Llama_3-000000?style=for-the-badge&logo=ollama&logoColor=white)](https://ollama.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)]()
+[![Live Demo](https://img.shields.io/badge/Live_Demo-orion--frontend--ehdh.onrender.com-FF4081?style=for-the-badge&logo=render&logoColor=white)](https://orion-frontend-ehdh.onrender.com/)
 
 <br/>
 
@@ -39,7 +40,7 @@
 > | **Team Member** | 👥 **Saurav** |
 > | **GitHub Repository Link** | 🔗 [https://github.com/AARAV-git/orion-backend](https://github.com/AARAV-git/orion-backend) *(Public)* |
 > | **Full Documentation Page** | 📖 [**Click Here to Open docs/DOCUMENTATION.md**](docs/DOCUMENTATION.md) |
-> | **Live Deployed Link** | 🌐 `[Insert Live URL / Vercel / Cloud Run]` *(Optional)* |
+> | **Live Deployed Link** | 🌐 [https://orion-frontend-ehdh.onrender.com/](https://orion-frontend-ehdh.onrender.com/) |
 > | **Demo Video Link** | 📹 `[Insert YouTube / Loom / Drive Demo Video Link]` |
 
 ---
