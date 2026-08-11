@@ -39,10 +39,10 @@
 > | **Team Leader Name** | 👤 **Sunny Pathak** (📞 `9321740409`) |
 > | **Team Member** | 👥 **Saurav** |
 > | **GitHub Repository Link** | 🔗 [https://github.com/AARAV-git/orion-backend](https://github.com/AARAV-git/orion-backend) *(Public)* |
-> | **Full Documentation Page** | 📖 [**Click Here to Open docs/DOCUMENTATION.md**](docs/DOCUMENTATION.md) |
+> | **Full Documentation Page** | 📖 [Click Here to Open docs/DOCUMENTATION.md](docs/DOCUMENTATION.md) |
 > | **Live Deployed Link** | 🌐 [https://orion-frontend-ehdh.onrender.com/](https://orion-frontend-ehdh.onrender.com/) |
-> | **Demo Video Link** | 📹 `[Insert YouTube / Loom / Drive Demo Video Link]` |
-
+> | **PPT / Slide Deck** | 📊 [View Presentation](https://docs.google.com/presentation/d/1qIvaM8AuSmoIU3kB3lyNsCJ-1qNx_Mqs__W98QAT5bI/edit?usp=sharing) |
+> | **Demo Video Link** | 📹 [Watch Demo](https://drive.google.com/file/d/1IhvcsPUXsgSgQbu-n6vcv51F5omC7t99/view?usp=sharing) |
 ---
 
 ## 📌 Executive Summary
